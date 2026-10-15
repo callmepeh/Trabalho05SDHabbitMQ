@@ -6,6 +6,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 
 # ---- Logs ----
+# Jar com dependencias embutidas e POM intermediario gerados pelo maven-shade-plugin
+*/dependency-reduced-pom.xml
 *.log
 logs/
 
