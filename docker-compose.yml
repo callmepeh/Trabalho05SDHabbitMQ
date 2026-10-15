@@ -1,0 +1,51 @@
+networks:
+  app-net:
+    driver: bridge
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-node
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-net
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  generator:
+    build: ./generator
+    container_name: generator-service
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - app-net
+
+  consumer-reviews:
+    build: ./consumer-reviews
+    container_name: consumer-reviews-service
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - app-net
+
+  consumer-support:
+    build: ./consumer-support
+    container_name: consumer-support-service
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - app-net
