@@ -1,9 +1,13 @@
 # Atividade 5 – Sistema Distribuído de Classificação Inteligente de Mensagens com RabbitMQ
 
+
 Sistema distribuído desenvolvido em **Java 17**, orquestrado com **Docker Compose**, que utiliza
 **RabbitMQ (Topic Exchange)** para transportar mensagens e **Inteligência Artificial embarcada
 (biblioteca [Smile](https://github.com/haifengl/smile))** para classificar automaticamente
 avaliações de produtos (análise de sentimento) e solicitações de suporte (categorização de problemas).
+
+> 🎬 **Vídeo de Apresentação:** Assista ao vídeo de demonstração e explicação do trabalho no YouTube:  
+> 👉 [**https://youtu.be/3qkjPRTLRVQ**](https://youtu.be/3qkjPRTLRVQ)
 
 ## 1. Arquitetura
 
